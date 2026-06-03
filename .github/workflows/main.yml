@@ -17,7 +17,7 @@ jobs:
           sudo git clone https://github.com/ncd282005/backend-docker.git 
       - name: Verify deployment
         run: |
-          ls -la /var/www/html
+          cd backend-docker 
           pm2 start index.js
         
 
