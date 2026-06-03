@@ -1,23 +1,25 @@
-name: Deploy to Server
+name: Deploy Backend
 
 on:
-  push:
-    branches:
-      - main
+ push:
+  branches:
+        - main
 
 jobs:
-  deploy:
-    runs-on: self-hosted
+ deploy:
+   runs-on: self-hosted
 
-    steps:
-      - name: Clean existing files
-        run: |
-          sudo rm -rf /var/www/html/*
 
-      - name: Clone repository to web root
-        run: |
-          sudo git clone https://github.com/ncd282005/backend-docker.git /var/www/html
+   steps:
+   - name: Deploy application
+     run: |
+       sudo rm -rf /var/www/html/*
+       sudo git clone https://github.com/ncd282005/backend-docker.git /var/www/html
+       cd /var/www/html
+       npm install
+       sudo npm install -g pm2
+       pm2 delete backend || true
+       pm2 start app.js --name backend
+       pm2 save
 
-      - name: Verify deployment
-        run: |
-          ls -la /var/www/html
+
