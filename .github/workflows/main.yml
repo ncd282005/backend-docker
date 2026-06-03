@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: Clone repository to web root
         run: |
+          cd /var/www/html/
           sudo git clone https://github.com/ncd282005/backend-docker.git 
       - name: Verify deployment
         run: |
