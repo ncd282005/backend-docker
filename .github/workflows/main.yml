@@ -18,5 +18,6 @@ jobs:
       - name: Verify deployment
         run: |
           ls -la /var/www/html
-          sudo pm2 restart index
+          pm2 start index.js
+        
 
