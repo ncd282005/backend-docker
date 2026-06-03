@@ -18,7 +18,6 @@ jobs:
       - name: Verify deployment
         run: |
           cd backend-docker 
-          sudo npm install express
           pm2 start index.js
         
 
